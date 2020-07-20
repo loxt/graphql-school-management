@@ -7,14 +7,14 @@ import { StudentService } from './student.service';
 export class StudentResolver {
   constructor(private studentService: StudentService) {}
 
-  @Query(returns => [StudentType])
-  async students() {
-    return this.studentService.getStudents();
+  @Query(returns => StudentType)
+  async student(@Args('id') id: string) {
+    return this.studentService.getStudent(id);
   }
 
   @Query(returns => [StudentType])
-  async student(@Args('id') id: string) {
-    return this.studentService.getStudent(id);
+  async students() {
+    return this.studentService.getStudents();
   }
 
   @Mutation(returns => StudentType)
